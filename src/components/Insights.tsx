@@ -4,7 +4,7 @@ import { getExpenses, getCategoryTotals } from "../utils/calculations";
 export default function Insights({ transactions }: any) {
   const totals = getCategoryTotals(transactions);
   const expenses = getExpenses(transactions);
-  const numberOfTransaction = transactions.length; 
+  const numberOfTransaction = transactions.length;
   const biggest: {
     name: string;
     value: any;
@@ -12,13 +12,17 @@ export default function Insights({ transactions }: any) {
     (a: { value: any }, b: { value: any }) => b.value - a.value,
   )[0];
   const smallest: {
-    name: string;
-    value: any;
-  } = totals.sort(
-    (a: { value: any }, b: { value: any }) => a.value - b.value,
-  )[0];
+    category: string;
+    amount: number;
+  } = transactions
+    .filter((t: any) => t.type === "expense")
+    .sort(
+      (a: { amount: any }, b: { amount: any }) =>
+        Number(a.amount) - Number(b.amount),
+    )[0];
 
   if (!biggest) return null;
+  if (!smallest) return null;
 
   return (
     <div className="bg-white p-6 rounded-xl shadow mb-6">
@@ -29,10 +33,12 @@ export default function Insights({ transactions }: any) {
         )
       </p>
       <p>
-        Your smallest expense category is <b>{smallest.name}</b> ($
-        {smallest.value})
+        Your smallest expense category is <b>{smallest.category}</b> ($
+        {smallest.amount})
       </p>
-      <p>Your spending median is (${(expenses / numberOfTransaction).toFixed(2)})</p>
+      <p>
+        Your spending median is (${(expenses / numberOfTransaction).toFixed(2)})
+      </p>
     </div>
   );
 }

@@ -1,9 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { v4 as uuid } from "uuid";
-import { categories } from "../utils/categories";
+import { expenseCategories, incomeCategories } from "../utils/categories";
+import { getExpenses } from "../utils/calculations";
 
-export default function AddTransactionModal({ addTransaction, close }: any) {
+export default function AddTransactionModal({
+  addTransaction,
+  close,
+  transactions,
+  budget,
+}: any) {
   const [form, setForm] = useState({
     type: "",
     amount: "",
@@ -12,10 +19,21 @@ export default function AddTransactionModal({ addTransaction, close }: any) {
     date: "",
   });
 
+  const expenses = getExpenses(transactions);
+
+  const amount = Number(form.amount);
+  const currentTotal = expenses + amount;
+
   const submit = (e: any) => {
     e.preventDefault();
 
     if (form.description.length > 100) {
+      toast.error("Description length must not be greater than 100");
+      return;
+    }
+
+    if (currentTotal > budget) {
+      toast.error("Your current expenses is greater than your set budget.");
       return;
     }
 
@@ -44,9 +62,19 @@ export default function AddTransactionModal({ addTransaction, close }: any) {
             <div className="w-[50%]  ">
               <select
                 className="py-2 border outline:none w-full"
-                aria-placeholder="Set type"
-                onChange={(e) => setForm({ ...form, type: e.target.value })}
+                value={form.type}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    type: e.target.value,
+                    category:
+                      e.target.value === "expense"
+                        ? expenseCategories[0]
+                        : incomeCategories[0],
+                  })
+                }
               >
+                <option value="">Select type</option>
                 <option value="expense">Expense</option>
                 <option value="income">Income</option>
               </select>
@@ -62,22 +90,25 @@ export default function AddTransactionModal({ addTransaction, close }: any) {
             </div>
           </div>
           <div>
-            {form.type === "expense" && (
-              <select
-                className="py-2 border outline:none w-full"
-                onChange={(e) => setForm({ ...form, category: e.target.value })}
-              >
-                {categories.map((c) => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-            )}
+            <select
+              className="py-2 border outline-none w-full"
+              value={form.category}
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
+            >
+              {(form.type === "expense"
+                ? expenseCategories
+                : incomeCategories
+              ).map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="w-full">
             <textarea
               className="px-2 border outline:none w-full"
               placeholder="Description"
-              disabled={form.description.length > 100}
               onChange={(e) =>
                 setForm({ ...form, description: e.target.value })
               }

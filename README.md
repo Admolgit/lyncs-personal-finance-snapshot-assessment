@@ -10,9 +10,9 @@ The goal of this project was to build a **clean, intuitive frontend application*
 
 Deployed on **Vercel**
 
-Example link:
+Github link:
 
-https://your-vercel-link.vercel.app
+https://github.com/Admolgit/lyncs-personal-finance-snapshot-assessment
 
 ---
 
@@ -42,7 +42,7 @@ Users can easily add new transactions with:
 
 Transactions are instantly reflected in the dashboard and charts.
 
-Users can also **delete transactions** from the list.
+Users can also **delete transactions** from the list on recent transactions.
 
 ---
 
@@ -62,13 +62,20 @@ Features include:
 
 The app includes a **pie chart** that breaks down spending by category so users can easily understand where their money is going.
 
-Categories include:
+Expenses Categories include:
 
 * Food
 * Transport
 * Bills
 * Entertainment
 * Shopping
+
+Income Categories include:
+* Salary,
+* Freelance,
+* Business,
+* Investment,
+* Other,
 
 ---
 

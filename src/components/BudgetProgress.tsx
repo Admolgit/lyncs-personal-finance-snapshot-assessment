@@ -20,7 +20,10 @@ export default function BudgetProgress({
       <input
         type="number"
         value={budget}
-        onChange={(e) => setBudget(Number(e.target.value))}
+        onChange={(e) => {
+          const value = e.target.value;
+          setBudget(value === "" ? "" : Number(value));
+        }}
         className="border p-2 rounded mb-4"
       />
 

@@ -61,6 +61,8 @@ export default function App() {
         <AddTransactionModal
           addTransaction={addTransaction}
           close={() => setShowModal(false)}
+          transactions={transactions}
+          budget={budget}
         />
       )}
     </div>

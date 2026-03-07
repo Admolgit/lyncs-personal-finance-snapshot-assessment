@@ -24,18 +24,19 @@ export const getCategoryTotals = (transactions: ITransaction[]) => {
   transactions
     ?.filter((t) => t.type === "expense")
     ?.forEach((t) => {
-      totals[t.category] = (totals[t.category] || 0) + Number(t.amount);
+      totals[t.category as string] =
+        (totals[t.category as string] || 0) + Number(t.amount);
     });
 
   return Object.entries(totals).map(([name, value]) => ({ name, value }));
 };
 
 export const getMonthlySpending = (transactions: any) => {
-  const months = {};
+  const months: any = {};
 
   transactions
-    .filter((t: {type: string}) => t.type === "expense")
-    .forEach((t: {date: string; amount: number}) => {
+    .filter((t: { type: string }) => t.type === "expense")
+    .forEach((t: { date: string; amount: number }) => {
       const month = new Date(t.date).toLocaleString("default", {
         month: "short",
       });
