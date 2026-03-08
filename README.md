@@ -76,7 +76,7 @@ Expenses Categories include:
 * Entertainment
 * Shopping
 
-Income Categories include:
+Income Categories include: This is done for income category only no chart visualization.
 * Salary,
 * Freelance,
 * Business,
