@@ -213,9 +213,22 @@ The chart libraries required data to be transformed into specific formats. Utili
 
 ---
 
+### What I Would Improve With More Time
+
+If more time were available, I would add:
+
+* Transaction editing
+* Category management
+* Dark mode
+* Mobile-first responsive design
+* Export transactions to CSV
+* Multi-month financial summaries, not just spending charts.
+
+---
+
 # Time Spent
 
-Approximately **8 hours** over 2 days.
+Approximately **10 hours** over 2 days.
 
 Time breakdown:
 
