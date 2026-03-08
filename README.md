@@ -46,6 +46,8 @@ Users can easily add new transactions with:
 
 Transactions are instantly reflected in the dashboard and charts.
 
+Adding expenses total amount greater than budget show warning toast after adding
+
 Users can also **delete transactions** from the list on recent transactions.
 
 ---
@@ -98,6 +100,7 @@ The application automatically generates insights such as:
 * Median spending category
 * Percentage of income spent
 * Whether the user is over or under budget
+* The percentage of budget spent
 
 This adds an extra layer of **financial awareness** beyond simple tracking.
 

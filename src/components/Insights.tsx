@@ -38,24 +38,40 @@ export default function Insights({
         <>
           <p>
             Your biggest expense category is <b>{biggest?.name}</b> (₦
-            {Number(biggest?.value).toLocaleString()})
+            {Number(biggest?.value).toLocaleString()}).
           </p>
           <p>
             Your smallest expense category is <b>{smallest?.category}</b> (₦
-            {Number(smallest?.amount).toLocaleString()})
+            {Number(smallest?.amount).toLocaleString()}).
           </p>
           <p>
-            You have spent <b>{percentageSpendingToBudget}%</b> of your budget
+            You have spent <b>{percentageSpendingToBudget}%</b> of your budget,
+            That is{" "}
+            <b>
+              {percentageSpendingToBudget > 100
+                ? percentageSpendingToBudget - 100
+                : 100 - percentageSpendingToBudget}
+              %
+            </b>
+            {percentageSpendingToBudget > 100 ? " over" : " under"} your budget.
           </p>
           <p>
-            You have spent <b>{percentageSpendingToIncome}%</b> of your income
+            You have spent <b>{percentageSpendingToIncome}%</b> of your income,
+            That is{" "}
+            <b>
+              {percentageSpendingToIncome > 100
+                ? percentageSpendingToIncome - 100
+                : 100 - percentageSpendingToIncome}
+              %
+            </b>
+            {percentageSpendingToIncome > 100 ? " over" : " under"} your income.
           </p>
           <p>
             Your spending/expense median is (₦
             {Number(
               (expenses / numberOfTransaction).toFixed(2),
             ).toLocaleString()}
-            )
+            ).
           </p>
         </>
       ) : (
