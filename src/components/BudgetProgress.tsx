@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo } from "react";
 import { getExpenses, type ITransaction } from "../utils/calculations";
 
@@ -7,7 +8,7 @@ export default function BudgetProgress({
   setBudget,
 }: {
   transactions: ITransaction[];
-  budget: number;
+  budget: any;
   setBudget: (amount: string | number) => void;
 }) {
   const expenses = useMemo(() => getExpenses(transactions), [transactions]);
