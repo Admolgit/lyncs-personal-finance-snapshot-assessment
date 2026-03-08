@@ -32,7 +32,7 @@ export default function AddTransactionModal({
       return;
     }
 
-    if (currentTotal > budget) {
+    if (form.type === "expense" && currentTotal > budget) {
       toast.error("Your current expenses is greater than your set budget.");
       return;
     }

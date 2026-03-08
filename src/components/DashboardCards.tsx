@@ -21,7 +21,7 @@ function Card({ title, value, color }: { title: string; value: any; color: strin
       className={`p-6 rounded-xl bg-white shadow border-l-4 border-${color}-500`}
     >
       <h3 className="text-gray-500">{title}</h3>
-      <p className="text-2xl font-bold">${value}</p>
+      <p className="text-2xl font-bold">₦{Number(value).toLocaleString()}</p>
     </div>
   );
 }

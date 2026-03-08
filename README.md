@@ -1,6 +1,6 @@
 # Personal Finance Snapshot
 
-A simple and interactive **personal finance dashboard** that helps users track their income, expenses, and monthly budget while visualizing spending patterns.
+A simple and interactive **personal finance dashboard** that helps users track their income, expenses, and monthly budget while visualizing spending patterns. You can plan your budget for a long period based on your preference.
 
 The goal of this project was to build a **clean, intuitive frontend application** that focuses on thoughtful user experience, clear financial insights, and maintainable code architecture.
 

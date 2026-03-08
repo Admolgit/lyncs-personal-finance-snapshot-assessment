@@ -12,18 +12,23 @@ export default function SpendingChart({ transactions }: any) {
       <h2 className="font-semibold mb-4">Spending Breakdown</h2>
 
       <div>
-        <PieChart width={400} height={300}>
-          <Pie data={data} dataKey="value" outerRadius={120}>
-            {data.map((entry, index) => (
-              <Cell key={index} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
+        {transactions.length > 0 ? (
+          <PieChart width={400} height={300}>
+            <Pie data={data} dataKey="value" outerRadius={120}>
+              {data.map((entry, index) => {
+                console.log(entry);
+                return (
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                );
+              })}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        ) : (
+          <p>No transaction yet</p>
+        )}
       </div>
-      <div>
-        
-      </div>
+      <div></div>
     </div>
   );
 }

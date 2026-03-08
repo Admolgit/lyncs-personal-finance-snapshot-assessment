@@ -35,7 +35,7 @@ export default function BudgetProgress({
       </div>
 
       <p className="mt-2">
-        ${expenses} / ${budget}
+        ₦{Number(expenses).toLocaleString()} / ₦{Number(budget).toLocaleString()}
       </p>
     </div>
   );
