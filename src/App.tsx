@@ -43,7 +43,7 @@ export default function App() {
         </div>
       </div>
 
-      <Insights transactions={transactions} />
+      <Insights transactions={transactions} budget={budget} />
 
       <TransactionList
         transactions={transactions}
