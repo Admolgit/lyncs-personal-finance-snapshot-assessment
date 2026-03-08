@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ITransaction {
   id?: string;
   date?: string;
@@ -19,7 +18,7 @@ export const getExpenses = (transactions: ITransaction[]) =>
     .reduce((sum, t) => sum + Number(t.amount), 0);
 
 export const getCategoryTotals = (transactions: ITransaction[]) => {
-  const totals: any = {};
+  const totals: Record<string, number> = {};
 
   transactions
     ?.filter((t) => t.type === "expense")
@@ -31,13 +30,13 @@ export const getCategoryTotals = (transactions: ITransaction[]) => {
   return Object.entries(totals).map(([name, value]) => ({ name, value }));
 };
 
-export const getMonthlySpending = (transactions: any) => {
-  const months: any = {};
+export const getMonthlySpending = (transactions: ITransaction[]) => {
+  const months: Record<string, number> = {};
 
   transactions
-    .filter((t: { type: string }) => t.type === "expense")
-    .forEach((t: { date: string; amount: number }) => {
-      const month = new Date(t.date).toLocaleString("default", {
+    .filter((t) => t.type === "expense")
+    .forEach((t) => {
+      const month = new Date(t.date as string).toLocaleString("default", {
         month: "short",
       });
 

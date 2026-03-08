@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import useLocalStorage from "./hook/useLocalStorage";
 import DashboardCards from "./components/DashboardCards";
@@ -8,17 +7,18 @@ import Insights from "./components/Insights";
 import TransactionList from "./components/TransactionList";
 import AddTransactionModal from "./components/AddTransactionModal";
 import MonthlyChart from "./components/MonthlyChart";
+import type { ITransaction } from "./utils/calculations";
 
 export default function App() {
   const [transactions, setTransactions] = useLocalStorage("transactions", []);
   const [budget, setBudget] = useLocalStorage("budget", 2500);
   const [showModal, setShowModal] = useState(false);
 
-  const addTransaction = (transaction: any) => {
+  const addTransaction = (transaction: ITransaction) => {
     setTransactions([...transactions, transaction]);
   };
 
-  const deleteTransaction = (id: string) => {
+  const deleteTransaction = (id: string | undefined) => {
     setTransactions(transactions.filter((t: { id: string }) => t.id !== id));
   };
 

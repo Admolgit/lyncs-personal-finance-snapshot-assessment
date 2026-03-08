@@ -1,30 +1,27 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getExpenses, getCategoryTotals } from "../utils/calculations";
+import { useMemo } from "react";
+import {
+  getExpenses,
+  getCategoryTotals,
+  type ITransaction,
+} from "../utils/calculations";
 
-export default function Insights({ transactions }: any) {
-  const totals = getCategoryTotals(transactions);
-  const expenses = getExpenses(transactions);
-  
+export default function Insights({
+  transactions,
+}: {
+  transactions: ITransaction[];
+}) {
+  const totals = useMemo(() => getCategoryTotals(transactions), [transactions]);
+  const expenses = useMemo(() => getExpenses(transactions), [transactions]);
+
   const numberOfTransaction = transactions.filter(
-    (t: any) => t.type === "expense",
+    (t) => t.type === "expense",
   ).length;
 
-  const biggest: {
-    name: string;
-    value: any;
-  } = totals.sort(
-    (a: { value: any }, b: { value: any }) => b.value - a.value,
-  )[0];
+  const biggest = totals.sort((a, b) => b.value - a.value)[0];
 
-  const smallest: {
-    category: string;
-    amount: number;
-  } = transactions
-    .filter((t: any) => t.type === "expense")
-    .sort(
-      (a: { amount: any }, b: { amount: any }) =>
-        Number(a.amount) - Number(b.amount),
-    )[0];
+  const smallest = transactions
+    .filter((t) => t.type === "expense")
+    .sort((a, b) => Number(a.amount) - Number(b.amount))[0];
 
   return (
     <div className="bg-white p-6 rounded-xl shadow mb-6">
@@ -34,15 +31,18 @@ export default function Insights({ transactions }: any) {
         <>
           <p>
             Your biggest expense category is <b>{biggest?.name}</b> (₦
-            {biggest?.value})
+            {Number(biggest?.value).toLocaleString()})
           </p>
           <p>
             Your smallest expense category is <b>{smallest?.category}</b> (₦
-            {smallest?.amount})
+            {Number(smallest?.amount).toLocaleString()})
           </p>
           <p>
-            Your spending median is (₦
-            {(expenses / numberOfTransaction)?.toFixed(2)})
+            Your spending/expense median is (₦
+            {Number(
+              (expenses / numberOfTransaction).toFixed(2),
+            ).toLocaleString()}
+            )
           </p>
         </>
       ) : (

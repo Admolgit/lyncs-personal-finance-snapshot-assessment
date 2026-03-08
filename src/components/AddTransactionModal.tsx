@@ -1,16 +1,22 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { v4 as uuid } from "uuid";
 import { expenseCategories, incomeCategories } from "../utils/categories";
-import { getExpenses } from "../utils/calculations";
+import { getExpenses, type ITransaction } from "../utils/calculations";
+
+export interface IAddTransactionModal {
+  addTransaction: (transaction: ITransaction) => void;
+  close: () => void;
+  transactions: ITransaction[];
+  budget: number;
+}
 
 export default function AddTransactionModal({
   addTransaction,
   close,
   transactions,
   budget,
-}: any) {
+}: IAddTransactionModal) {
   const [form, setForm] = useState({
     type: "",
     amount: "",
@@ -19,12 +25,14 @@ export default function AddTransactionModal({
     date: "",
   });
 
-  const expenses = getExpenses(transactions);
+  const expenses = useMemo(() => getExpenses(transactions), [transactions]);
 
   const amount = Number(form.amount);
   const currentTotal = expenses + amount;
 
-  const submit = (e: any) => {
+  const overBudget = currentTotal - budget;
+
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (form.description.length > 100) {
@@ -33,8 +41,7 @@ export default function AddTransactionModal({
     }
 
     if (form.type === "expense" && currentTotal > budget) {
-      toast.error("Your current expenses is greater than your set budget.");
-      return;
+      toast.error(`⚠ You are ₦${overBudget} over your budget`);
     }
 
     addTransaction({

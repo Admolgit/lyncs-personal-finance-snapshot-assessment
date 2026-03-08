@@ -1,17 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getExpenses } from "../utils/calculations";
+import { useMemo } from "react";
+import { getExpenses, type ITransaction } from "../utils/calculations";
 
 export default function BudgetProgress({
   transactions,
   budget,
   setBudget,
 }: {
-  transactions: any;
-  budget: any;
-  setBudget: any;
+  transactions: ITransaction[];
+  budget: number;
+  setBudget: (amount: string | number) => void;
 }) {
-  const expenses = getExpenses(transactions);
+  const expenses = useMemo(() => getExpenses(transactions), [transactions]);
   const percent = Math.min((expenses / budget) * 100, 100);
+  const barColor = expenses > budget ? "bg-red-500" : "bg-blue-500";
 
   return (
     <div className="bg-white p-6 rounded-xl shadow mb-6">
@@ -29,7 +30,7 @@ export default function BudgetProgress({
 
       <div className="w-full bg-gray-200 rounded-full h-4">
         <div
-          className="bg-blue-500 h-4 rounded-full"
+          className={`${barColor} bg-blue-500 h-4 rounded-full`}
           style={{ width: `${percent}%` }}
         />
       </div>

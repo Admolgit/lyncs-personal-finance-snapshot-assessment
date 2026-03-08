@@ -1,7 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getIncome, getExpenses } from "../utils/calculations";
+import {
+  getIncome,
+  getExpenses,
+  type ITransaction,
+} from "../utils/calculations";
 
-export default function DashboardCards({ transactions }: any) {
+export default function DashboardCards({
+  transactions,
+}: {
+  transactions: ITransaction[];
+}) {
   const income = getIncome(transactions);
   const expenses = getExpenses(transactions);
   const balance = income - expenses;
@@ -15,7 +22,15 @@ export default function DashboardCards({ transactions }: any) {
   );
 }
 
-function Card({ title, value, color }: { title: string; value: any; color: string }) {
+function Card({
+  title,
+  value,
+  color,
+}: {
+  title: string;
+  value: string | number | undefined;
+  color: string;
+}) {
   return (
     <div
       className={`p-6 rounded-xl bg-white shadow border-l-4 border-${color}-500`}

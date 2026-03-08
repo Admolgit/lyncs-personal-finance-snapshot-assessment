@@ -1,9 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
-import { getMonthlySpending } from "../utils/calculations";
+import { getMonthlySpending, type ITransaction } from "../utils/calculations";
+import { useMemo } from "react";
 
-export default function MonthlyChart({ transactions }: any) {
-  const data = getMonthlySpending(transactions);
+export default function MonthlyChart({
+  transactions,
+}: {
+  transactions: ITransaction[];
+}) {
+  const data = useMemo(() => getMonthlySpending(transactions), [transactions]);
 
   return (
     <div className="bg-white p-6 rounded-xl shadow mb-6">

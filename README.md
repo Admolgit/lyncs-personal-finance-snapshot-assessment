@@ -1,6 +1,6 @@
 # Personal Finance Snapshot
 
-A simple and interactive **personal finance dashboard** that helps users track their income, expenses, and monthly budget while visualizing spending patterns. You can plan your budget for a long period based on your preference.
+A simple and interactive **personal finance dashboard** that helps users track their income, expenses, and monthly budget while visualizing spending patterns. You can plan your budget for a long period based on your preference. 
 
 The goal of this project was to build a **clean, intuitive frontend application** that focuses on thoughtful user experience, clear financial insights, and maintainable code architecture.
 
@@ -9,6 +9,10 @@ The goal of this project was to build a **clean, intuitive frontend application*
 # Live Demo
 
 Deployed on **Vercel**
+
+Vercel live link:
+
+https://lyncs-personal-finance-snapshot-ass.vercel.app
 
 Github link:
 
@@ -48,7 +52,7 @@ Users can also **delete transactions** from the list on recent transactions.
 
 ### Budget Tracking
 
-Users can define a monthly budget and track spending against it.
+Users can define a monthly budget and track spending against it. Users can over spend but the system gives a warning and progress bar shows red to depict danger in finances.
 
 Features include:
 
@@ -96,6 +100,10 @@ The application automatically generates insights such as:
 This adds an extra layer of **financial awareness** beyond simple tracking.
 
 ---
+
+### Transaction Table
+
+Transaction table is included to show recent transactions added. Transaction can be deleted from the list of trasactions. The table is paginated and number of transactions desire for a table per page can also be set.
 
 ### Persistent Data
 
