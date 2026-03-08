@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
-import type { ITransaction } from "../utils/calculations";
 
-export default function useLocalStorage(key: string, initialValue: ITransaction) {
+export default function useLocalStorage(key: string, initialValue: any) {
   const [value, setValue] = useState(() => {
     const stored = localStorage.getItem(key);
     return stored ? JSON.parse(stored) : initialValue;
