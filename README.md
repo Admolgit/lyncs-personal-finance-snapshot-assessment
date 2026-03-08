@@ -44,9 +44,10 @@ Users can easily add new transactions with:
 * Date
 * Type (Income or Expense)
 
-Transactions are instantly reflected in the dashboard and charts.
+Transactions are instantly reflected in the dashboard and charts. And all field must be filled to add new transaction, else the 
+add button on the modal is disabled.
 
-Adding expenses total amount greater than budget show warning toast after adding
+Adding expenses total amount greater than budget show warning toast after adding.
 
 Users can also **delete transactions** from the list on recent transactions.
 

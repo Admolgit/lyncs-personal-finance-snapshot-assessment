@@ -49,8 +49,8 @@ export default function Insights({
             That is{" "}
             <b>
               {percentageSpendingToBudget > 100
-                ? percentageSpendingToBudget - 100
-                : 100 - percentageSpendingToBudget}
+                ? Number(percentageSpendingToBudget - 100).toFixed(2)
+                : Number(100 - percentageSpendingToBudget).toFixed(2)}
               %
             </b>
             {percentageSpendingToBudget > 100 ? " over" : " under"} your budget.
@@ -60,8 +60,8 @@ export default function Insights({
             That is{" "}
             <b>
               {percentageSpendingToIncome > 100
-                ? percentageSpendingToIncome - 100
-                : 100 - percentageSpendingToIncome}
+                ? Number(percentageSpendingToIncome - 100).toFixed(2)
+                : Number(100 - percentageSpendingToIncome).toFixed(2)}
               %
             </b>
             {percentageSpendingToIncome > 100 ? " over" : " under"} your income.

@@ -32,6 +32,13 @@ export default function AddTransactionModal({
 
   const overBudget = currentTotal - budget;
 
+  const isFieldsValid =
+    form.amount.trim() === "" ||
+    form.category.trim() === "" ||
+    form.date.trim() === "" ||
+    form.description.trim() === "" ||
+    form.type.trim() === "";
+
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -142,7 +149,10 @@ export default function AddTransactionModal({
         </div>
 
         <div className="flex justify-end">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded">
+          <button
+            className={`${isFieldsValid ? "bg-blue-300" : "bg-blue-600"} "text-white px-4 py-2 rounded"`}
+            disabled={isFieldsValid}
+          >
             Add
           </button>
         </div>
