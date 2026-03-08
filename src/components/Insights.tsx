@@ -3,6 +3,7 @@ import {
   getExpenses,
   getCategoryTotals,
   type ITransaction,
+  getIncome,
 } from "../utils/calculations";
 
 export default function Insights({
@@ -12,6 +13,7 @@ export default function Insights({
 }) {
   const totals = useMemo(() => getCategoryTotals(transactions), [transactions]);
   const expenses = useMemo(() => getExpenses(transactions), [transactions]);
+  const income = useMemo(() => getIncome(transactions), [transactions]);
 
   const numberOfTransaction = transactions.filter(
     (t) => t.type === "expense",
@@ -22,6 +24,10 @@ export default function Insights({
   const smallest = transactions
     .filter((t) => t.type === "expense")
     .sort((a, b) => Number(a.amount) - Number(b.amount))[0];
+
+  const ratio = expenses > 0 ? expenses / income : 0;
+
+  const percentageSpending = ratio * 100;
 
   return (
     <div className="bg-white p-6 rounded-xl shadow mb-6">
@@ -36,6 +42,9 @@ export default function Insights({
           <p>
             Your smallest expense category is <b>{smallest?.category}</b> (₦
             {Number(smallest?.amount).toLocaleString()})
+          </p>
+          <p>
+            You have spent <b>{percentageSpending}%</b> of your income
           </p>
           <p>
             Your spending/expense median is (₦

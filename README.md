@@ -94,6 +94,8 @@ A bar chart visualizes total spending per month, helping users identify trends a
 The application automatically generates insights such as:
 
 * Highest spending category
+* Smallest spending category
+* Median spending category
 * Percentage of income spent
 * Whether the user is over or under budget
 
