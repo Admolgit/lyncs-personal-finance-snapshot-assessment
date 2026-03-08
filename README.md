@@ -128,6 +128,7 @@ Several UX improvements were implemented to make the app feel polished:
 * Clear empty states
 * Color-coded income and expenses
 * Smooth interactions
+* Warning for overspending
 
 ---
 
@@ -214,7 +215,7 @@ The chart libraries required data to be transformed into specific formats. Utili
 
 # Time Spent
 
-Approximately **4-5 hours** over 2 days.
+Approximately **8 hours** over 2 days.
 
 Time breakdown:
 
