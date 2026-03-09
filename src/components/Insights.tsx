@@ -45,8 +45,9 @@ export default function Insights({
             {Number(smallest?.amount).toLocaleString()}).
           </p>
           <p>
-            You have spent <b>{percentageSpendingToBudget}%</b> of your budget,
-            That is{" "}
+            You have spent{" "}
+            <b>{Number(percentageSpendingToBudget).toFixed(2)}%</b> of your
+            budget, That is{" "}
             <b>
               {percentageSpendingToBudget > 100
                 ? Number(percentageSpendingToBudget - 100).toFixed(2)
@@ -56,8 +57,9 @@ export default function Insights({
             {percentageSpendingToBudget > 100 ? " over" : " under"} your budget.
           </p>
           <p>
-            You have spent <b>{percentageSpendingToIncome}%</b> of your income,
-            That is{" "}
+            You have spent{" "}
+            <b>{Number(percentageSpendingToIncome).toFixed(2)}%</b> of your
+            income, That is{" "}
             <b>
               {percentageSpendingToIncome > 100
                 ? Number(percentageSpendingToIncome - 100).toFixed(2)
